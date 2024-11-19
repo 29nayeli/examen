@@ -7,11 +7,16 @@ const Alumnos = () => {
   const [email, setEmail] = useState('');
   const [telefono, setTelefono] = useState('');
   const [direccion, setDireccion] = useState('');
+  const [mostrarDatos, setMostrarDatos] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aquí puedes manejar el registro del alumno
     console.log({ nombre, edad, email, telefono, direccion });
+  };
+
+  const handleMostrarDatos = () => {
+    setMostrarDatos(true);
   };
 
   return (
@@ -72,9 +77,31 @@ const Alumnos = () => {
           Registrar
         </Button>
       </Form>
+
+      {/* Botón para mostrar los datos ingresados */}
+      <Button
+        variant="info"
+        className="mt-3"
+        onClick={handleMostrarDatos}
+      >
+        Mostrar Datos Ingresados
+      </Button>
+
+      {/* Mostrar los datos ingresados si el usuario hace clic en el botón */}
+      {mostrarDatos && (
+        <div className="mt-3">
+          <h4>Datos Ingresados:</h4>
+          <ul>
+            <li><strong>Nombre:</strong> {nombre}</li>
+            <li><strong>Edad:</strong> {edad}</li>
+            <li><strong>Email:</strong> {email}</li>
+            <li><strong>Teléfono:</strong> {telefono}</li>
+            <li><strong>Dirección:</strong> {direccion}</li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Alumnos;
-
